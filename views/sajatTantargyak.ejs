@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Saját tantárgyak' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+    <h1>Saját tantárgyak</h1>
+      <div class="tartalom">
+        <% if (typeof tantargyak == 'object' && tantargyak.length && tantargyak) { %>
+          <table>
+            <tr><th>Tantargy ID</th><th>Tantargy nev</th><th>Evfolyam</th><th>Kurzus</th><th>Szeminarium</th><th>Labor</th><th>Részletek</th></tr>
+            <% tantargyak.forEach((tantargy) => { %>
+              <tr id="tantargy<%=tantargy.TantargyID%>">
+                <td onclick="getFiles('<%= tantargy.TantargyID %>')"><%= tantargy.TantargyID %></td>
+                <td><%= tantargy.TantargyNev %></td>
+                <td><%= tantargy.Evfolyam %></td>
+                <td><%= tantargy.Kurzus %></td>
+                <td><%= tantargy.Szeminarium %></td>
+                <td><%= tantargy.Labor %></td>
+                <td>
+                  <a href="/tantargyReszletei?tantargy=<%= tantargy.TantargyID %>">További részletek!</a>
+                </td>
+                <% if (payload.role === 'admin') { %>
+                  <td>
+                    <button onclick="deleteTantargy('<%=tantargy.TantargyID%>')">Törlés</button>
+                  </td>
+                <% } %>
+              </tr>
+              <tr id="fileok<%= tantargy.TantargyID %>" style="display:none;"></tr>
+              <tr id="fileok<%= tantargy.TantargyID %>" style="display:none;"></tr>
+            <% }) %>
+          </table>
+        <% } else { %>
+          <p>No tantargy to show</p>
+        <% } %> 
+      </div>
+  </body>
+</html>

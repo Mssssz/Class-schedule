@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Bejelentkezés' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <h1>Bejelentkezés</h1>
+    <div class="tartalom">
+      <form action="/login/loginForm" method="POST">
+        <p>Felhasznalo: <input type="number" id="diakID" name="diakID" required placeholder="pl. 15" pattern="[0-9]+"/></p>
+        <p>Jelszo: <input type="password" id="jelszo" name="jelszo" required placeholder="Min. 8 karakter hosszú"> </p>
+        <p><input type="submit" id="leadas" value="Belépés!"></p>
+      </form>
+      <% if (typeof hiba === 'boolean') { %>
+      <% if(hiba) { %> <p>Hiba nem sikerült bejelentkezz!</p> <% } else { %> <p>Üdv!</p> <% } %>
+      <% } %>
+    </div>
+  </body>
+</html>

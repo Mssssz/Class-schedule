@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Saját órarend' }) %>
+  <body onload="orarendFeltoltes('<%=payload.felhasznalo%>')">
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+    <h1>Saját órarend</h1>
+      <% const idopontok = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']%>
+      <div class="tartalom">
+        <h2>Kérések</h2>
+        <% if (keresek.length < 3) { %>
+        <p>Lehet 3 kívánságod, hogy mikor (mettől - meddig, melyik nap) legyen/ne legyen egy bizonyos óra/az összes órára vonatkozva is megadhatod!</p>
+        <form action="/sajatOrarend/keres" method="POST" id="keres">
+          <input type="number" id="felhasznaloID" name="felhasznaloID" value="<%=payload.felhasznalo%>" hidden/>
+          <label>Óra: </label>
+          <select name="tantargy" id="tantargy" form="keres">
+            <option value="Összes">Összes</option>
+            <% if (typeof tantargyak == 'object' && tantargyak.length && tantargyak) { 
+            tantargyak.forEach((tantargy) => { %>
+              <option value="<%= tantargy.TantargyNev %>"><%= tantargy.TantargyNev %></option>
+            <% }) }%>
+          </select>
+          <br>
+          <label>Mettől: </label>
+          <select name="mettol" id="mettol" form="keres">
+            <% idopontok.forEach((indopont) => { %>
+              <option value="<%= indopont %>"><%= indopont %></option>
+            <% })%>
+          </select>
+          <br>
+          <label>Meddig: </label>
+          <select name="meddig" id="meddig" form="keres">
+            <% idopontok.forEach((indopont) => { %>
+              <option value="<%= indopont %>"><%= indopont %></option>
+            <% })%>
+          </select>
+          <br>
+          <label>Nap: </label>
+          <select name="nap" id="nap" form="keres">
+            <% const napok = ['Hétfő','Kedd','Szerda','Csütörtök','Péntek','Szombat'] 
+            napok.forEach((nap, ind) => { %>
+              <option value="<%= ind+1 %>"><%= nap %></option>
+            <% })%>
+          </select>
+          <br>
+          <label>Legyen vagy ne legyen (üres - nem akarok, bepipált - akarok): </label>
+          <input type="checkbox" name="legyen"/><br>
+          <input type="submit" value="Küldés!">
+        </form>
+        <% if (typeof hiba === 'boolean' && hiba) { %>
+          <p>Hibás időintervalumot adtál meg!</p>
+        <% } %>  
+        <% } else {%>
+          <p>Már megvolt a 3 kívánságod!</p>
+        <% }%>
+        <br>
+        <h2>Aktív kéréseid</h2>
+        <table class="orarend">
+          <tr><th>Kérések száma</th><th>Tantárgy</th><th>Legyen</th><th>Mettől</th><th>Meddig</th><th>Nap</th><th>Állapot</th></tr>
+          <% keresek.forEach((keres, ind) => { %>
+            <tr id="keres<%=keres.KeresID%>">
+              <td><%= ind + 1%>.</td>
+              <td><%=keres.TantargyNev%></td>
+              <% if (keres.Legyen === 0) { %>
+                <td>Ne legyen</td>
+              <%} else { %>
+                <td>Legyen</td>
+              <%} %>
+              <td><%=keres.Mettol%></td>
+              <td><%=keres.Meddig%></td>
+              <% if (keres.Nap === 1) { %>
+                <td>Hétfő</td>
+              <%} else if (keres.Nap === 2) {%>
+                <td>Kedd</td>
+              <%} else if (keres.Nap === 3) {%>
+                <td>Szerda</td>
+              <%} else if (keres.Nap === 4) {%>
+                <td>Csütörtök</td>
+              <%} else if (keres.Nap === 5) {%>
+                <td>Péntek</td>
+              <%} else {%>
+                <td>Szombat</td>
+              <%} %>
+              <% if (keres.Allapot === 0) { %>
+                <td class="Kurzus">Visszautasítva</td>
+              <%} else if (keres.Allapot === 1) { %>
+                <td class="Labor">Elfogadva</td>
+              <%} else {%>
+                <td class="Szeminarium">Feldolgozás alatt  <button onclick="deleteKeres('<%=keres.KeresID%>')">Törlés</button></td>
+              <%} %>
+            </tr>
+            <tr id="hiba<%=keres.KeresID%>"></tr>
+          <% }) %>
+        </table>
+      </div>
+      <div class="tartalom">
+        <table class="orarend">
+          <tr><th>Időpont</th><th>Hetfő</th><th>Kedd</th><th>Szerda</th><th>Csütörtök</th><th>Péntek</th><th>Szombat</th></tr>
+          <% idopontok.forEach((ora) => { %>
+            <tr>
+              <td><%= ora%></td>
+              <td id="1<%=ora%>"></td>
+              <td id="2<%=ora%>"></td>
+              <td id="3<%=ora%>"></td>
+              <td id="4<%=ora%>"></td>
+              <td id="5<%=ora%>"></td>
+              <td id="6<%=ora%>"></td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+  </body>
+</html>

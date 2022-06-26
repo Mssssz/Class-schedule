@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ko-papir-ollo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='witcher.css'>
+    <script src='kopapirollo.js'></script>
+</head>
+<body onload="lementAdat()">
+    <header>
+        <h1>Kő-papír-olló</h1>
+        <nav>
+            <a href="form.html">Vissza a formhoz</a>
+        </nav>
+    </header>
+    <div>
+        <p>Ha játszani szeretnél ellenem kő-papír-ollót nyomd meg a gombot!</p>
+        <button id="start" onclick="jatek()">Játék</button>
+    </div>
+    <div id="vege">
+
+    </div>
+    <div id="jatek">
+        <div id="jatekos"></div>
+        <p>Játékos választása:</p>
+        <img src="ko.jpg" alt="Kő" id="ko-jat" onclick="ko()">
+        <img src="papir.jpg" alt="Papír" id="papir-jat" onclick="papir()">
+        <img src="ollo.jpg" alt="Olló" id="ollo-jat" onclick="ollo()">
+        <p>Gép választása:</p>
+        <img src="kerdojel.jpg" alt="Kérdőjel" id="kerdojel">
+        <img src="ko.jpg" alt="Kő" id="ko-gep">
+        <img src="papir.jpg" alt="Papír" id="papir-gep">
+        <img src="ollo.jpg" alt="Olló" id="ollo-gep">
+        <div id="ered"></div>
+        <button id="ujra" onclick="jatek()">Újra</button>
+    </div>
+
+</body>
+</html>

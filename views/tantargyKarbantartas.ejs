@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <%- include('partials/head.ejs', { title: 'Tantárgyak karbantartása' }) %>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+    <h2>Új tantárgy</h2>
+    <div class="tartalom">
+        <p>Új tantárgy hozzáadása az orarendhez!</p>
+        <form action="/tantargyKarbantartas/tantargyHozzadasForm" method="POST">
+            <p>TantárgyID: <input type="number" id="tantargyID" name="tantargyID" required placeholder="pl. 2" pattern="[0-9]+"/> <% if (typeof hiba === 'boolean') { if(hiba) {%> <em>Van már ilyen id-ju tantárgy!</em> <% }}%></p>
+            <p>Tantárgy neve: <input type="text" id="tantargy_nev" name="tantargyNev" required placeholder="pl. Algoritmika" pattern="([A-Z]([a-z]|(\s))*)+"/></p>
+            <p>Évfolyam: <input type="number" id="evfolyam" name="evfolyam" required placeholder="pl. 2" pattern="[0-9]+"/> </p>
+            <p>Hány óra kuzus jár vele: <input type="number" id="kurzus" name="kurzus" required placeholder="pl. 16" pattern="[0-9]+"/></p>
+            <p>Hány óra szeminárium jár vele: <input type="number" id="szeminarium" name="szeminarium" required placeholder="pl. 16" pattern="[0-9]+"/></p>
+            <p>Hány óra labor jár vele: <input type="number" id="labor" name="labor" required placeholder="pl. 20" pattern="[0-9]+"/></p>
+            <input type="text" id="felhasznaloID" name="felhasznaloID" hidden value="<%= payload.felhasznalo %>">
+            <p><input type="submit" id="leadas" value="Leadom!"></p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Órarend</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='witcher.css'>
+</head>
+<body>
+    <h2>Órarend adminoknak</h2>
+    <p>Új tantargy hozzáadása az orarendhez!</p>
+    <form action="/submit_form_admin" method="POST">
+        <p>TantárgyID: <input type="number" id="tantargyID" name="tantargyID" required placeholder="pl. 2" pattern="[0-9]+"/></p>
+        <p>Tantárgy neve: <input type="text" id="tantargy_nev" name="tantargyNev" required placeholder="pl. Algoritmika" pattern="([A-Z]([a-z]|(\s))*)+"/></p>
+        <p>Évfolyam: <input type="number" id="evfolyam" name="evfolyam" required placeholder="pl. 2" pattern="[0-9]+"/> </p>
+        <p>Hány óra kuzus jár vele: <input type="number" id="kurzus" name="kurzus" required placeholder="pl. 16" pattern="[0-9]+"/></p>
+        <p>Hány óra szeminárium jár vele: <input type="number" id="szeminarium" name="szeminarium" required placeholder="pl. 16" pattern="[0-9]+"/></p>
+        <p>Hány óra labor jár vele: <input type="number" id="labor" name="labor" required placeholder="pl. 20" pattern="[0-9]+"/></p>
+        <p><input type="submit" id="leadas" value="Leadom!"></p>
+    </form>
+
+    <h2>Órarend tanároknak</h2>
+    <p>Új állomány feltöltése a tantargyhoz!</p>
+    <form action="/submit_form_tanar" method="POST" enctype="multipart/form-data">
+        <p>TanárID: <input type="number" id="tanarID" name="tanarID" required placeholder="pl. 15" pattern="[0-9]+"/></p>
+        <p>TantárgyID: <input type="number" id="tantargyID" name="tantargyID" required placeholder="pl. 2" pattern="[0-9]+"/></p>
+        <p>Feltöltendő file: <input type="file" id="allomany" name="allomany"></p>
+        <p><input type="submit" id="leadas" value="Leadom!"></p>
+    </form>
+
+    <h2>Diák tantárgy</h2>
+    <p>Diák csatlakozása/kilépése egy tantárgyból!</p>
+    <form action="/submit_form_diak" method="POST">
+        <p>DiákID: <input type="number" id="diakID" name="diakID" required placeholder="pl. 15" pattern="[0-9]+"/></p>
+        <p>TantárgyID: <input type="number" id="tantargyID" name="tantargyID" required placeholder="pl. 2" pattern="[0-9]+"/></p>
+        <p>Csatlakozás/kilépés (Ha bepipálod akkor kilépsz a tantárgyból, ha üresenhagyod belépsz): <input type="checkbox" name="beLepes"/></p>
+        <p><input type="submit" id="leadas" value="Leadom!"></p>
+    </form>
+    
+    <footer id="fot">
+
+    </footer>
+</body>
+</html>

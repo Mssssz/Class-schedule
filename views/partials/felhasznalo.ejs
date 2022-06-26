@@ -1,0 +1,9 @@
+<div class="felhasznalo">
+  <% if (typeof Felhasznalo == 'string' && Felhasznalo.length && Felhasznalo) {%>
+  <p><%=Felhasznalo%></p>
+  <br>
+  <span><a class="menu" href="/login/logout">Kilépés</a></span>
+  <% } else { %>
+  <span><a class="menu" href="/login">Bejelenetkezés</a></span>
+  <% } %> %>
+</div>

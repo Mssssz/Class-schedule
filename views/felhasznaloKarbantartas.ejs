@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Felhasználók karbantartása' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+
+
+    <h1>Új felhasználó létrehozása</h1>
+    <div class="tartalom">
+      <form action="/felhasznaloKarbantartas/regisztraciForm" method="POST">
+        <p>FelhasználóID: <input type="number" id="diakID" name="diakID" required placeholder="pl. 15" pattern="[0-9]+"/></p>
+        <p>Jelszó: <input type="password" id="jelszo" name="jelszo" required placeholder="Min. 8 karakter hosszú"> <% if (typeof jelszo === 'boolean') { %><em>A jelszó nem felel meg a feltételeknek!</em> <% }  %></p>
+        <p>Szerepköre: <input type="text" id="role" name="role" required placeholder="'tanar' vagy 'admin'"/></p>
+        <p><input type="submit" id="leadas" value="Regisztráció!"></p>
+      </form>
+      <% if (typeof hiba === 'boolean') { %>
+      <% if(hiba) { %> <p>Van már ilyen id-ju felhasználó!</p> <% } else { %> <p>A felhasznalo letrehozva!</p> <% } %>
+      <% } %>
+    </div>
+
+    <h1>Bejelentkezés vagy kilépés</h1>
+    <div class="tartalom">
+      <% if (typeof tantargyak == 'object' && tantargyak.length && tantargyak) { %>
+        <p>
+          <label>Válassz tantárgyat: </label>
+          <select name="tantargy" id="tantargy" form="beki">
+            <% tantargyak.forEach((tantargy) => { %>
+              <option value="<%= tantargy.TantargyID %>"><%= tantargy.TantargyNev %></option>
+            <% }) %>
+          </select>
+          <br>
+          <label >Válassz felhasználót: </label>
+          <select name="felhasznalo" id="felhasznalo" form="beki">
+            <% felhasznalok.forEach((felhasznalo) => { %>
+              <option value="<%= felhasznalo.FelhasznaloID %>"><%= felhasznalo.FelhasznaloID %> </option>
+            <% }) %>
+          </select>
+        </p>
+        <form action="/felhasznaloKarbantartas/bekijeletkezesForm" method="post" id="beki">
+          <p>Csatlakozás/kilépés (Ha bepipálod akkor kilép a tantárgyból, ha üresenhagyod belép): <input type="checkbox" name="beLepes"/></p>
+          <input type="submit" value="Submit!">
+        </form> 
+        <% if (typeof hibas === 'boolean') { %>
+          <% if(hibas && torol) { %> <p>Nem lehet kiléptetni a felhasználót, mert nincs benne a tantárgyba!</p> 
+          <% } else if (hibas && !torol) { %> <p>Nem lehet beléptetni a felhasználót, mert már belépett a tantárgyba!</p> 
+          <% } else if (torol) {%> <p>A felhasználó sikeresen kilépett a tantárgyból!</p> 
+          <% } else { %> <p>A felhasználó sikeresen belépett a tantárgyba!</p> 
+          <% } %>
+        <% } %>
+      <% } else { %>
+        <p>Hiba a felhasználók és a tantárgyak betöltésébe!</p>
+      <% } %> 
+    </div>
+    <h1>Felhasználók listázása</h1>
+    <div class="tartalom">
+      <% if (typeof felhasznalok == 'object' && felhasznalok.length && felhasznalok) { %>
+        <table>
+          <tr><th>Felhasználó ID</th><th>Szerepköre</th><th>Törlés</th></tr>
+          <% felhasznalok.forEach((felhasznalo) => { %>
+            <tr id="felhasznalo<%=felhasznalo.FelhasznaloID%>" style="display:table-row;">
+              <td><%= felhasznalo.FelhasznaloID %></td>
+              <td><%= felhasznalo.Szerepkor %></td>
+              <td>
+                <button onclick="deleteFelhasznalo('<%=felhasznalo.FelhasznaloID%>')">Törlés</button>
+              </td>
+            </tr>
+            <tr id="hiba<%=felhasznalo.FelhasznaloID%>" style="display:none;"></tr>
+          <% }) %>
+        </table>
+      <% } else { %>
+        <p>Nincs megjeleítendő felhasználó!</p>
+      <% } %> 
+    </div>
+  </body>
+</html>

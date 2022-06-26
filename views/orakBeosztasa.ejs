@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Órák besztása' })%>
+  <body onload="orarendFeltoltesAdmin()">
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+    <h1>Tantárgyak</h1>
+      <div class="tartalom">
+        <h2>Kívánságok</h2>
+        <table class="orarend">
+          <tr><th>Kérések száma</th><th>Tantárgy</th><th>Felhasznalo</th><th>Legyen</th><th>Mettől</th><th>Meddig</th><th>Nap</th><th>Állapot</th></tr>
+          <% keresek.forEach((keres, ind) => { %>
+            <tr>
+              <td><%= ind + 1%>.</td>
+              <td><%=keres.TantargyNev%></td>
+              <td><%= keres.FelhasznaloID%></td>
+              <% if (keres.Legyen === 0) { %>
+                <td>Ne legyen</td>
+              <%} else { %>
+                <td>Legyen</td>
+              <%} %>
+              <td><%=keres.Mettol%></td>
+              <td><%=keres.Meddig%></td>
+              <% if (keres.Nap === 1) { %>
+                <td>Hétfő</td>
+              <%} else if (keres.Nap === 2) {%>
+                <td>Kedd</td>
+              <%} else if (keres.Nap === 3) {%>
+                <td>Szerda</td>
+              <%} else if (keres.Nap === 4) {%>
+                <td>Csütörtök</td>
+              <%} else if (keres.Nap === 5) {%>
+                <td>Péntek</td>
+              <%} else {%>
+                <td>Szombat</td>
+              <%} %>
+              <% if (keres.Allapot === 0) { %>
+                <td class="Kurzus">Visszautasítva</td>
+              <%} else if (keres.Allapot === 1) { %>
+                <td class="Labor">Elfogadva</td>
+              <%} else {%>
+                <td id="keres<%=keres.KeresID%>">
+                  <button onclick="modositKeres('<%=keres.KeresID%>', '1')">Elfogadom</button>
+                  <button onclick="modositKeres('<%=keres.KeresID%>', '0')">Visszautasítom</button>
+                </td>
+              <%} %>
+            </tr>
+            <tr id="hiba<%=keres.KeresID%>"></tr>
+          <% }) %>
+        </table>
+      </div>
+      <div class="tartalom">
+        <table class="orarend">
+          <tr><th>Időpont</th><th>Hetfő</th><th>Kedd</th><th>Szerda</th><th>Csütörtök</th><th>Péntek</th><th>Szombat</th></tr>
+          <% const idopontok = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']; 
+          idopontok.forEach((ora) => { %>
+            <tr>
+              <td><%= ora%></td>
+              <td id="1<%=ora%>"><p id="1<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('1', '<%=ora%>')">+</p></td>
+              <td id="2<%=ora%>"><p id="2<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('2', '<%=ora%>')">+</p></td>
+              <td id="3<%=ora%>"><p id="3<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('3', '<%=ora%>')">+</p></td>
+              <td id="4<%=ora%>"><p id="4<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('4', '<%=ora%>')">+</p></td>
+              <td id="5<%=ora%>"><p id="5<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('5', '<%=ora%>')">+</p></td>
+              <td id="6<%=ora%>"><p id="6<%=ora%>p" class="hozzaad" onclick="oraHozzaadas('6', '<%=ora%>')">+</p></td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+  </body>
+</html>

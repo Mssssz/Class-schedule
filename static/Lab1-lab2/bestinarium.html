@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Bestinárium</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='witcher.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <!-- allalanos stilusosztaly hasznalata -->
+    <h1 class="altalanos">Bestinárium</h1>
+    <nav>
+      <!-- a fo (1) tipusu link hasznalata -->
+      <a href="witcher.html" class="fo">Witcher</a>
+      <a href="#" class="fo">Bestinárium</a>
+      <a href="konyvek.html" class="fo">Könyvek</a>
+    </nav>
+    <article>
+      <!-- allalanos stilusosztaly hasznalata -->
+      <h2 class="altalanos">A witcher világ szörnyei</h2>
+      <section>
+        <h2 class="altalanos">Előszó</h2>
+        <!--CSS3 átmenetek (transition) segítségével oldjuk meg, hogy a bekeretezett div háttérszíne változzon
+        fehérről pirosra 3 másodperc alatt (ne egyből), amennyiben az egeret fölé visszük.-->
+        <!--Definiáljunk egy olyan div stílust, mely be van keretezve duplakerettel. A szöveg legyen balra illetve
+        elfele tolódva a kereten belül (az alsó illetve jobboldali behúzás–padding–nagyobb). -->
+        <div id='transitiondiv' class="keret">
+          <p>A Witcher világát nemcsak emberek, tündék és törpök népesítik be. Itt szörnyek is tanyáznak. Az elhagyott utak mentén, a véres csatamezőkön és a sötét barlangokban lények lakoznak. Mindegyikük az Együttállás után bukkant fel. A többség bűnöslelkű ember volt valaha, és a kitaszítottság, a remeteélet vadállattá formálta őket. </p>
+          <p>Geralt számos ilyen lénnyel fog találkozni kalandja során, hiszen hivatása is ezen alapul: Megtisztítani a világot a szörnyetegektől. Sajnos az utóbbi időben ismét nagy lett az igény a witcherek segítségére, de sok ember félelemmel vegyes megvetéssel van irántuk, melynek következtében egy szörnyvadász akár emberi ellenfelekbe is akadhat.</p>
+        </div>
+      </section> 
+      <section>
+          <!-- allalanos stilusosztaly hasznalata -->
+          <h2 class="altalanos">Szörnyek listája</h2>
+          <h3>Drakonoidok</h3>
+          <!-- a szorny (2) tipusu lista -->
+          <ul class="szorny">
+              <li>A Fyresdali sárkány</li>
+              <li>Baziliszkuszok</li>
+              <li>Ezüstbaziliszkuszok</li>
+              <li>Királyvivern</li>
+              <li>Kukorixok</li>
+              <li>Sikoltó</li>
+              <li>Sárkánygyík királynők</li>
+              <li>Sárkánygyíkok</li>
+              <li>Villásfarkúak</li>
+              <li>Vivernek</li>
+          </ul>
+            <h3>Elementálok</h3>
+          <ul class="szorny">
+              <li>A Méhészet fantomja</li>
+              <li>A Vad Falka kopói</li>
+              <li>Dzsinnek</li>
+              <li>Földelementálok</li>
+              <li>Gargoyle-ok</li>
+              <li>Gólemek</li>
+              <li>Jégelementálok</li>
+              <li>Therazene</li>
+              <li>Tündérek</li>
+              <li>Tűzelementálok</li>
+          </ul>
+          <h3>Hibridek</h3>
+          <ul class="szorny">
+              <li>Eryniák</li>
+              <li>Griffek</li>
+              <li>Hárpiák</li>
+              <li>Szirének</li>
+              <li>Szukkubuszok</li>
+              <li>Melusine</li>
+              <li>Opinicus</li>
+              <li>Salma</li>
+          </ul>
+          <h3>Ittrekedtek</h3>
+          <ul class="szorny">
+            <li>Doppler</li>
+            <li>Angyalfik</li>
+            <li>Erdei szellem</li>
+            <li>Fúriák</li>
+            <li>Lesik</li>
+            <li>Szilvánok</li>
+            <li>Ördögfattyak</li>
+            <li>Üvöltő</li>
+            <li>Pokolfajzatok</li>
+            <li>Morvudd</li>
+            <li>Kernun</li>
+            <li>Imp</li>
+            <li>Erdőrémek</li>
+            <li>Rút banya</li>
+          </ul>
+          <h3>Megátkozottak</h3>
+          <ul class="szorny">
+            <li>Berzerkerek</li>
+            <li>Torzafiókok</li>
+            <li>Vérfarkasok</li>
+            <li>Ulfhedinnek</li>
+            <li>Szúrcsohó</li>
+          </ul>
+          <h3>Nekrofágok</h3>
+          <ul class="szorny">
+            <li>Alghoulok</li>
+            <li>Ghoulok</li>
+            <li>Fojtólidércek</li>
+            <li>Bűzdémonok</li>
+            <li>Abaya</li>
+            <li>Dögrémek</li>
+            <li>Sírbanyák</li>
+            <li>Vízibanyák</li>
+            <li>Mourntart</li>
+            <li>Ködárnyak</li>
+          </ul>
+          <h3>Ogroidok</h3>
+          <ul class="szorny">
+            <li>Hegyi trollok</li>
+            <li>Jégtrollok</li>
+            <li>Jégóriás</li>
+            <li>Küklopszok</li>
+            <li>Nekkerek</li>
+            <li>Hagubman</li>
+            <li>Bumm-Bumm</li>
+          </ul>
+          <h3>Rovarfélék</h3>
+          <ul class="szorny">
+            <li>Arakászok</li>
+            <li>Endriág</li>
+            <li>Hassiri</li>
+            <li>Kikimor</li>
+            <li>Óriás százlábúak</li>
+            <li>Fakó özvegyek</li>
+            <li>Arachnomorf</li>
+          </ul>
+          <h3>Szellemlények</h3>
+          <ul class="szorny">
+            <li>A Fehér Hölgy</li>
+            <li>A festmény lidérce</li>
+            <li>Az ördög a kútnál</li>
+            <li>Déllidércek</li>
+            <li>Lidércek</li>
+            <li>Éjlidércek</li>
+            <li>Árny</li>
+            <li>Himlőlidércek</li>
+            <li>Ligetszépe</li>
+            <li>Éteri</li>
+          </ul>
+          <h3>Vadállatok</h3>
+          <ul class="szorny"> 
+            <li>Farkasok</li>
+            <li>Medvék</li>
+            <li>Kutyák</li>
+            <li>Vadkanok</li>
+            <li>Párducok</li>
+            <li>Ordas farkas</li>
+            <li>A Beauclairi szörnyeteg</li>
+          </ul>
+          <h3>Vámpírok</h3>
+          <ul class="szorny">
+            <li>Alpok</li>
+            <li>Brukszák</li>
+            <li>Katakanok</li>
+            <li>Marák</li>
+            <li>Noszferátok</li>
+            <li>Fléderek</li>
+            <li>Ekimarák</li>
+          </ul>
+      </section>
+      <section>
+          <!-- allalanos stilusosztaly hasznalata -->
+          <h2 class="altalanos">Több</h2>
+          <a href="https://witcher.fandom.com/hu/wiki/The_Witcher_3:_Wild_Hunt_-_Besti%C3%A1rium" target="_blank">Egy bővebb listát képekkel itt találhatsz!</a>
+      </section>
+    </article>
+    <footer>
+        <p>Márton Szilárd-Attila, msim2047, 2022.03.20.</p>
+    </footer>
+</body>
+</html>

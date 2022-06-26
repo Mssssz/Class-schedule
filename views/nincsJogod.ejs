@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Nem vagy bejeletkezve' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: payload.felhasznalo }) %>
+    <h1>Nincs jogod ehez az oldalhoz</h1>
+    <div class="tartalom">
+      <p>Nincs jogod ehez az oldalhoz, ezért nem tudod elérni a kivánt oldalt!</p>
+    </div>
+  </body>
+</html>

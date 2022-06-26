@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Regisztráció' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <h1>Regisztráció</h1>
+    <form action="/regisztracio/regisztraciForm" method="POST">
+      <p>DiákID: <input type="number" id="diakID" name="diakID" required placeholder="pl. 15" pattern="[0-9]+"/></p>
+      <p>Jelszo: <input type="password" id="jelszo" name="jelszo" required placeholder="Min. 8 karakter hosszú"> <% if (typeof jelszo === 'boolean') { %><em>A jelszó nem felel meg a feltételeknek!</em> <% }  %></p>
+      <p>Szerepköre: <input type="text" id="role" name="role" required placeholder="'tanar' vagy 'admin'"/></p>
+      <p><input type="submit" id="leadas" value="Regisztráció!"></p>
+    </form>
+    <% if (typeof hiba === 'boolean') { %>
+    <% if(hiba) { %> <p>Van már ilyen id-ju felhasználó!</p> <% } else { %> <p>A felhasznalo letrehozva!</p> <% } %>
+    <% } %>
+  </body>
+</html>

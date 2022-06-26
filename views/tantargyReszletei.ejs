@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head.ejs', { title: 'Tantargy' }) %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/felhasznalo.ejs', { Felhasznalo: felhasz }) %>
+
+    <h1>Tantárgy fileok</h1>
+    <div class="tartalom">
+      <% if (typeof reszletek == 'object' && reszletek.length && reszletek) { %>
+        <% reszletek.forEach((reszlet) => { %>
+          <p id="file<%=reszlet.FileID%>">
+            <a href="<%=reszlet.FilePath%>" download="<%=reszlet.FileNeve%>"><%= reszlet.FileNeve %></a>
+            <% if (typeof felhasz == 'string' && felhasz.length && felhasz) { %> <button onclick="deleteFile('<%=reszlet.FileID%>')">Törlés</button> <% } %>
+            <br>
+          </p>
+          <em id="hiba<%=reszlet.FileID%>"></em>
+        <% }) %>
+      <% } else { %>
+        <p>Nincs feltöltött állomány a tantárgyhoz!</p>
+      <% } %>
+    </div>
+    <% if (typeof felhasz == 'string' && felhasz.length && felhasz) { %>
+    <h2>File feltöltése a tantárgyhoz</h2>
+    <div class="tartalom">
+      <p>Új állomány feltöltése a tantargyhoz!</p>
+      <form action="/tantargyReszletei/fileFeltoltesForm" method="POST" enctype="multipart/form-data">
+          <input type="number" id="tantargyID" name="tantargyID" value="<%= TantargyID %>" hidden/></p>
+          <p>Feltöltendő file: <input type="file" id="allomany" name="allomany"></p>
+          <p><input type="submit" id="leadas" value="Leadom!"></p>
+          <% if (typeof fel === 'boolean') { if (fel) {%> <em>A file sikeresen feltöltésre került!</em><% }}%>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>

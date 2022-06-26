@@ -1,0 +1,268 @@
+/*A HTML törzsében legyen (a szöveggel együtt gördülő) háttérkép (lehetőleg ne legyen túl sötét kép),
+mely csak az y tengely mentén ismétlődik*/
+body {
+    /*background-color: rgb(54, 50, 44);*/
+    background-image: url(tudas.png);
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-attachment: scroll;
+    width: 100%;
+    align-content: center;
+    padding-left: 2em;
+    padding-right: 1em;
+}
+
+/*Elemre vonatkozó szelektorok (osztály/ID nélkül) segítségével oldjuk meg, hogy az em és p elemek
+színe, háttérszíne és szövegdíszítése (text-decoration) legyen egyforma*/
+em, p {
+    color: black;
+    text-decoration: solid;
+}
+
+div.tartalom {
+    background-color: rgb(142, 139, 134);
+    border-radius: 12px;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 75%;
+}
+
+/*Definiáljunk (és használjunk a HTML oldalon) két különböző stílusú (sorszám nélküli) listát.
+Használjunk csak az illető elemre vonatkozó stílusosztályokat (class)*/
+ul.szorny {
+    list-style: circle;
+} 
+
+ul.linkek {
+    list-style: square;
+}
+
+ol.konyv {
+    list-style: upper-roman;
+}
+
+/*Általános stílusosztály (osztály, mely nincs ráhúzva egy elemtípusra) segítségével oldjuk meg, hogy
+különböző HTML elemek stílusa (betűtípus-család, betű vastagsága, betű stílusa, díszítés) ugyanaz
+legyen. Alkalmazzuk ugyanazt a stílusosztályt a h1 és h2 elemekre*/
+*.altalanos {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+/*Definiáljunk egy olyan div stílust, mely be van keretezve duplakerettel. A szöveg legyen balra illetve
+felfele tolódva a kereten belül (az alsó illetve jobboldali behúzás–padding–nagyobb).*/
+div.keret {
+    border-style: double;
+    padding-bottom: 3em;
+    padding-right: 3em;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+}
+
+/*Definiáljunk a táblázat esetén két különböző cella-stílust, melyben a szöveg igazítása más és más (az
+első oszlopban az első, a többiben a második legyen érvényes).*/
+table {
+    width: 100%;
+    align-self: center;
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+th:first-child {
+    background-color: rgb(160, 154, 142);
+    border: 2px solid;
+}
+
+tr:first-child {
+    border: 2px solid;
+}
+
+td:first-child {
+    border-right: 2px solid;
+}
+
+th, td {
+    border: 1px solid;
+    background-color: rgb(201, 197, 188);
+    text-align: center;
+    width: 13%;
+}
+
+/*CSS3 átmenetek (transition) segítségével oldjuk meg, hogy a bekeretezett div háttérszíne változzon
+fehérről pirosra 3 másodperc alatt (ne egyből), amennyiben az egeret fölé visszük.*/
+#transitiondiv { 
+    background-color: white;
+    transition: background-color 3s;
+}
+
+#transitiondiv:hover { 
+    background-color: red;
+}
+
+/*Oldjuk meg (táblázat használata nélkül), hogy az oldal egy részén a szöveg két különböző színű,
+egymás mellett elhelyezett téglalapban szerepeljen.*/
+.rugalmas {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+div.jobbra{
+    float: right;
+    width: 50%;
+    background-color: rgb(172, 168, 160);
+    display: inline;
+    padding: 1em;
+}
+
+div.balra{
+    float: left;
+    width: 50%;
+    background-color: rgb(158, 146, 121);
+    display: inline;
+    padding: 1em;
+}
+
+/*Tobbi*/
+h1, h2, h3, h4 {
+    background-color: rgb(82, 79, 70);
+    width: 25%;
+    padding: 3px;
+    padding-left: 1em;
+    border-radius: 12px;
+}
+  
+img {
+    width: 200px;
+}
+
+footer {
+    text-align: center;
+}
+
+.hiba {
+    color: red;
+}
+
+div.felhasznalo {
+    float: right;
+    text-align: center;
+    padding: 1em;
+    font-size: large;
+}
+
+div.felhasznalo p {
+    text-align: center;
+    color: black;
+    background-color: rgb(142, 139, 134);
+    border-radius: 12px;
+    font-size: xx-large;
+}
+
+nav { 
+    padding-bottom: 1.2em;
+    padding-right: 1em;
+    padding-left: 0em;
+    padding-top: 1.2em;
+    font-size: large;
+}
+
+a.menu:link {
+    background-color: rgb(125, 121, 111);
+    padding: 1em;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    text-decoration: solid;
+    color: #000;
+    border-width: 3px 5px 5px 3px ;
+}
+a.menu:visited {
+    background-color: rgb(125, 121, 111);
+    padding: 1em;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    text-decoration: solid;
+    color: #000;
+    border-width: medium;
+    border-width: 3px 5px 5px 3px ;
+}
+a.menu:hover {
+    background-color: rgb(82, 79, 70);
+    padding: 1em;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    text-decoration: solid;
+    color: #000;
+    border-width: medium;
+    border-width: 2px 3px 3px 2px ;
+}
+
+table.orarend {
+    width: 100%;
+    align-self: center;
+    border: 2px solid;
+    border-collapse: collapse;
+    background-color: rgb(201, 197, 188);
+    border-radius: 12px;
+}
+
+td.Szeminarium {
+    background-color: rgb(211, 187, 67);
+}
+
+td.Labor {
+    background-color: rgb(144, 211, 67);
+}
+
+td.Kurzus {
+    background-color: rgb(211, 67, 91);
+}
+button {
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-width: 2px 3px 3px 2px ;
+}
+button:hover {
+    border-radius: 5px;
+    border-collapse: collapse;
+    border-width: 1px 2px 2px 1px ;
+}
+p.hozzaad {
+    text-align: center;
+    font-size: xx-large;
+}
+td>form {
+    text-align: center;
+}
+
+td>a:link {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0.1em;
+    border-radius: 4px;
+    text-decoration: solid;
+    color: #000;
+    border-width: 2px 3px 3px 1px ;
+}
+td>a:visited {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0.1em;
+    border-radius: 4px;
+    text-decoration: solid;
+    color: #000;
+    border-width: medium;
+    border-width: 2px 3px 3px 1px ;
+}
+td>a:hover {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0.1em;
+    border-radius: 4px;
+    text-decoration: solid;
+    color: #000;
+    border-width: medium;
+    border-width: 1px 2px 2px 1px ;
+}
