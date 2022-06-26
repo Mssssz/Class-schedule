@@ -1,3 +1,2 @@
-# Webprogramozás laborfeladatok
-
-Először le kell futtani az Orarend.sql-t (mysql)
+Make sure you have MySql installed.
+The database and all of its elements will be created when executing the /static/Orarend.sql file.
